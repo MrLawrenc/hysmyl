@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <title>欢迎来到mars的博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- CSS -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=PT+Sans:400,700'>
+    <link rel="stylesheet" th:href="@{/assets/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/supersized.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Javascript -->
+    <script th:src="@{/assets/js/jquery-1.8.2.min.js}"></script>
+    <script th:src="@{/assets/js/supersized.3.2.7.min.js}"></script>
+    <script th:src="@{/assets/js/supersized-init.js}"></script>
+    <script th:src="@{/assets/js/scripts.js}"></script>
+</head>
+
+<body>
+
+<div class="page-container">
+    <h1 th:text="#{login.tip}">Login</h1>
+    <br>
+    <p th:text="${msg}"></p>
+    <form method="post" id="login" th:action="@{/user/index}">
+        <input type="text" name="username" class="username"
+               th:placeholder="#{login.username}"> <input type="password"
+                                                          name="password"
+                                                          class="password"
+                                                          th:placeholder="#{login.password}"><br>
+        <br>
+        <p class="submit">
+            <button type="submit"
+                    style="width: 50%; padding: 0; margin: 0; float: left; box-sizing: border-box;"
+                    th:text="#{login.login}">Sign
+                me in
+            </button>
+            <button type="button" onclick="resetForm()"
+                    style="width: 50%; padding: 0; margin: 0; float: left; box-sizing: border-box;"
+                    th:text="#{login.reset}">Reset
+                me in
+            </button>
+        </p>
+        <br>
+        <div class="error">
+            <span>+</span>
+        </div>
+    </form>
+    <div class="connect">
+        <p>Or connect with:</p>
+        <p>
+            <a class="facebook" href=""></a>
+            <a class="twitter" href=""></a>
+        </p>
+    </div>
+</div>
+<div style="text-align: center;" class="login-help">
+    <p>Mars ©2018 西南科技大学东七宿舍科技有限公司</p>
+    <br>
+    <a style="color: yellow" th:href="@{/login.html(l='zh_CN')}">中文</a>
+    <a style="color: yellow" th:href="@{/login.html(l='en_US')}">English</a>
+</div>
+</body>
+
+</html>
+

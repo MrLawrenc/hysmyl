@@ -1,0 +1,90 @@
+spring:
+  datasource:
+    name: test
+    url: jdbc:mysql://localhost:3306/blog?serverTimezone=GMT%2B8&characterEncoding=UTF-8
+    username: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+#  环境切换,在生产，开发等环境中切换
+  profiles:
+#    active: dev
+    active: prod
+#  国际化消息
+  messages:
+    basename: i18n.login
+  devtools:
+    restart:
+      trigger-file: trigger.file
+  servlet:
+    multipart:
+#      配置上传文件大小限制
+      max-file-size: 10MB
+
+
+#  mvc:
+#    favicon:
+#      enabled: false
+#mybatis mapper文件扫描和别名扫描
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.blog.hysmyl.pojo
+
+#自定义邮件相关属性
+#    格式如下：账户和昵称要一一对应
+#    recipient:
+#      accounts: mrliu943903861@163.com,第二个收件人
+#      personals: 收件人1的昵称,第二个收件人昵称
+#    CC:
+#      accounts: 943903861@qq.com,抄送人2的账户
+#      personals: 抄送人1的昵称,抄送人2的昵称
+#    BCC:
+#      accounts: 密送人1的账户,密送人2的账户
+#      personals: 密送人1的昵称,密送人2的昵称
+email:
+  from:
+    account: mars943903861@163.com
+    password: 123456lmylmy
+    fromPersonal: 发件人昵称
+  others:
+    recipient:
+      accounts: mrliu943903861@163.com
+      personals: 收件人1的昵称
+    CC:
+      accounts: 943903861@qq.com
+      personals: 抄送人1的昵称
+
+
+#  日志级别调整trace debug info warn error由低到高,默认是root级别即info
+#logging:
+#  level:
+#    com: warn
+#  当改路径下生成名为blog.log的log日志，需要指定文件。在和path共存的时候path失效
+#  file: log/blog.log
+#  指定的是目录，表示在根目录下创建log目录，log之下创建blog目录，之后使用boot默认的名字springboot.log保存日志
+#  path: /log/blog
+
+---
+spring:
+  profiles: dev
+  thymeleaf:
+  #开启模板缓存（默认值：true）
+    cache: false
+  datasource:
+    password: admin
+server:
+  port: 80
+logging:
+  level:
+    com: info
+---
+server:
+  port: 80
+spring:
+  profiles: prod
+  datasource:
+    password: 0628lmyLMY!
+logging:
+  level:
+    com: debug

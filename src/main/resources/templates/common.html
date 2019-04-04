@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>公共的html片段</title>
+</head>
+
+<body>
+<nav th:fragment="nav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/main.html">HOME</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" th:href="@{/user/record}">Record</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/blog/list}">Blog</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/user/about}">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/user/contact}">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<footer th:fragment="footer">
+    <div class="wrap-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-footer col-md-3">
+                    <h2 class="footer-title">关于我们</h2>
+                    <div class="textwidget">关于我们的介绍
+                    </div>
+                </div>
+                <div class="col-footer col-md-3 widget_recent_entries">
+                    <h2 class="footer-title">最近的动态</h2>
+                    <ul>
+                        <li><a href="#">MOST VISITED COUNTRIES</a></li>
+                        <li><a href="#">5 PLACES THAT MAKE A GREAT HOLIDAY</a></li>
+                        <li><a href="#">PEBBLE TIME STEEL IS ON TRACK TO SHIP IN JULY</a></li>
+                    </ul>
+                </div>
+                <div class="col-footer col-md-3">
+                    <h2 class="footer-title">新的</h2>
+                    If you want to receive our latest news send directly to your email, please leave your email address
+                    bellow. Subscription is free and you can cancel anytime.
+                    <form action="#" method="post">
+                        <input type="text" name="your-name" value="" size="40" placeholder="Your Email"/>
+                        <input type="submit" value="SUBSCRIBE" class="btn btn-skin"/>
+                    </form>
+                </div>
+                <div class="col-footer col-md-3">
+                    <h2 class="footer-title">友情链接</h2>
+                    <div class="footer-tags">
+                        <a href="#">animals</a>
+                        <a href="#">cooking</a>
+                        <a href="#">countries</a>
+                        <a href="#">city</a>
+                        <a href="#">children</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <p>Copyright &copy; 2019.西科大东七A203 <br>Collect from <a
+                            href="http://www.cssmoban.com/" title="wechat" target="_blank">mrliu_wechat</a>&ensp;&ensp;&ensp;<a
+                            href="http://www.cssmoban.com/" target="_blank" title="qq">mrliu_qq</a></p>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a href="#"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a>
+                        </li>
+                        <li><a href="#"><i class="fa fa-pinterest"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

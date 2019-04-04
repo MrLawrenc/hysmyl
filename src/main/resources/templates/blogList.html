@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- META DATA -->
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title></title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css                               }" type="text/css">
+
+    <!-- Owl Carousel Assets -->
+    <link rel="stylesheet" th:href="@{/owl-carousel/owl.carousel.css}">
+    <!-- <link href="owl-carousel/owl.theme.css" rel="stylesheet"> -->
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Custom Fonts -->
+    <link rel="stylesheet" type="text/css" th:href="@{/font-awesome-4.4.0/css/font-awesome.min.css}">
+    <link th:href="@{/css/mycss.css}" rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .blogContentOneShow {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+</head>
+
+<body class="sub-page">
+<!-- /////////////////////////////////////////Navigation -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand page-scroll" href="/main.html">HOME</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" th:href="@{/user/record}">Record</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/blog/list}">Blog</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/user/about}">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" th:href="@{/user/contact}">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+<header class="container">
+    <div class="site-branding">
+        <h1 class="site-title">
+            <a href="index.html">
+                <span th:text="${session.user}">Justice</span>
+            </a>
+        </h1>
+        <h2 class="site-description">Welcome to Us !</h2>
+    </div>
+    <div class="social-links">
+        <ul class="list-inline">
+            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+            <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+            <li><a href="#"><i class="fa fa-rss"></i></a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- /////////////////////////////////////////Content -->
+<div id="page-content">
+
+    <div id="page-content1">
+        <section class="box-content box-1">
+            <div class="container">
+                <div class="row">
+                    <!---->
+                    <div class="col-md-4" id="blogList" th:each="blogContentVO : ${blogContentVOS}">
+                        <div class="box-item">
+                            <!--<img th:src="@{/images/5.jpg}" class="img-responsive"/>-->
+                            <div class="content">
+                                <h3 class="blogContentOneShow" th:text="${blogContentVO.title}"></h3>
+                                <p class="blogContentOneShow" th:text="${blogContentVO.content}">这是博客内容 有很多 这是博客内容 有很多
+                                    这是博客内容 有很多 这是博客内容 有很多 这是博客内容 有很多
+                                    这是博客内容 有很多 这是博客内容 有很多</p>
+                                <a href="single.html">Read More...</a>
+                                <br><br>
+                                <span th:text="${#dates.format(blogContentVO.date,'yyyy-MM-dd')}">MAY 21, 2014 BY VAFPRESS</span><br>
+                            </div>
+                        </div>
+                        <!---->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!-- 引入公共的html页面 -->
+<footer th:include="common::footer">
+</footer>
+
+<script type="text/javascript" src="js/jquery-2.1.1.js" th:src="@{/js/jquery-2.1.1.js}"></script>
+<script type="text/javascript" src="js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="js/agency.js" th:src="@{/js/agency.js}"></script>
+<script th:src="@{/js/jquery.easing.min.js}"></script>
+<script th:src="@{/js/classie.js}"></script>
+<script th:src="@{/js/cbpAnimatedHeader.js}"></script>
+<script th:src="@{/js/myBlogList.js}"></script>
+</body>
+</html>
