@@ -2,8 +2,6 @@ package com.blog.hysmyl.utils.timer;
 
 import com.blog.hysmyl.utils.BlogLog;
 import com.blog.hysmyl.utils.Clear;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,7 +46,7 @@ public class TimerUtil {
 
     /**
      * @author Liu Ming
-     * @deprecated 开启定时任务
+     * @description 开启定时任务
      */
     public void startTimer() {
         Timer timer = new Timer();
