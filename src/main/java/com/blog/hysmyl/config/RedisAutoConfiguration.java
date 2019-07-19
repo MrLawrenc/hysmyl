@@ -1,5 +1,8 @@
 package com.blog.hysmyl.config;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
@@ -10,7 +13,7 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import java.net.UnknownHostException;
@@ -28,7 +31,7 @@ public class RedisAutoConfiguration {
     @ConditionalOnMissingBean(name = {"redisTemplate"})
     public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) throws UnknownHostException {
 
- /*       RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
 
         // 使用Jackson2JsonRedisSerialize  需要导入依赖 com.fasterxml.jackson.core jackson-databind
@@ -46,23 +49,23 @@ public class RedisAutoConfiguration {
         redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
         redisTemplate.setKeySerializer(new StringRedisSerializer());
         redisTemplate.afterPropertiesSet();
-        return redisTemplate;*/
-
-        /**
-         * ========================上面这种方式也可以========================
-         */
-        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate();
-
-        /**
-         * 设置序列化方式防止乱码，不然会在命令行使用会发现前面有一串二进制的数据
-         */
-        RedisSerializer stringSerializer = new StringRedisSerializer();
-        redisTemplate.setKeySerializer(stringSerializer);
-        redisTemplate.setValueSerializer(stringSerializer);
-        redisTemplate.setHashKeySerializer(stringSerializer);
-        redisTemplate.setHashValueSerializer(stringSerializer);
-        redisTemplate.setConnectionFactory(redisConnectionFactory);
         return redisTemplate;
+
+        /**
+         * ========================下面这种方式只能序列化string，不能序列化对象========================
+         */
+//        RedisTemplate<Object, Object> redisTemplate = new RedisTemplate();
+//
+//        /**
+//         * 设置序列化方式防止乱码，不然会在命令行使用会发现前面有一串二进制的数据
+//         */
+//        RedisSerializer stringSerializer = new StringRedisSerializer();
+//        redisTemplate.setKeySerializer(stringSerializer);
+//        redisTemplate.setValueSerializer(stringSerializer);
+//        redisTemplate.setHashKeySerializer(stringSerializer);
+//        redisTemplate.setHashValueSerializer(stringSerializer);
+//        redisTemplate.setConnectionFactory(redisConnectionFactory);
+//        return redisTemplate;
     }
 
     @Bean

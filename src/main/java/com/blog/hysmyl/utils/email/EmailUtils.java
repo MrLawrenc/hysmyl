@@ -1,6 +1,5 @@
 package com.blog.hysmyl.utils.email;
 
-import com.alibaba.fastjson.JSON;
 import com.blog.hysmyl.entity.MyEmail;
 import com.blog.hysmyl.pojo.MailUser;
 import com.blog.hysmyl.utils.BlogLog;
@@ -13,7 +12,10 @@ import org.springframework.stereotype.Component;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * @author Liu Mingyao

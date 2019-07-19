@@ -65,6 +65,15 @@ public class RedisUtil {
         return setOperations.pop(key);
     }
 
+
+    /***
+     *
+     * @return redis里对应该key的list的长度
+     */
+    public  long listSize(String key){
+        return stringRedisTemplate.opsForList().size(key);
+    }
+
     /**
      * ============================================以上是操作String的key，下面是操作任意类型的（object）=================================
      */
@@ -86,6 +95,14 @@ public class RedisUtil {
         values.forEach(value -> listOperations.leftPush(key, value));
     }
 
+
+    /***
+     * 单个对象添加进list
+     */
+    public void pushListOne(Object key, Object value) {
+        ListOperations<Object, Object> ops = objectRedisTemplate.opsForList();
+        ops.leftPush(key,value);
+    }
     /***
      * 操作元素为对象集合
      */

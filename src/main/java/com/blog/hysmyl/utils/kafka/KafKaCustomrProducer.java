@@ -32,12 +32,12 @@ public class KafKaCustomrProducer {
         future.addCallback(new ListenableFutureCallback<SendResult<String, Object>>() {
             @Override
             public void onFailure(Throwable throwable) {
-                log.info("发送消息失败:" + throwable.getMessage());
+                log.warn("发送消息失败:" + throwable.getMessage());
             }
 
             @Override
             public void onSuccess(SendResult<String, Object> sendResult) {
-                System.out.println("发送结果:" + sendResult.toString());
+             log.info("kafka发送成功:" + sendResult.toString());
             }
         });
     }
