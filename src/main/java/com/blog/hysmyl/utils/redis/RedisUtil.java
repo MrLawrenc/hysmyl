@@ -57,6 +57,8 @@ public class RedisUtil {
         return listOperations.leftPop(key, 2, TimeUnit.SECONDS);
     }
 
+
+
     /***
      * 集合弹出元素
      */
@@ -125,6 +127,15 @@ public class RedisUtil {
     public Object ListLeftPop(Object key) {
         ListOperations<Object, Object> listOperations = objectRedisTemplate.opsForList();
         return listOperations.leftPop(key, 2, TimeUnit.SECONDS);
+    }
+
+    /***
+     * 列表弹出所有元素
+     */
+    public List<Object> listAll(String key) {
+        ListOperations<Object, Object> listOperations = objectRedisTemplate.opsForList();
+        Long size = listOperations.size(key);
+        return listOperations.range(key, 2L, size);
     }
 
     /***

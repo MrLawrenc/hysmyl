@@ -34,7 +34,7 @@ public class BlogContentServiceImpl implements BlogContentService {
 
     /**
      * @author Liu Ming
-     * @deprecated 发表博客，在发表成功之后需要更新redis缓存中的blog列表数据
+     * @description 发表博客，在发表成功之后需要更新redis缓存中的blog列表数据
      */
     @Override
     public ResultMessage pushBlog(BlogContent blogContent) {
@@ -76,8 +76,8 @@ public class BlogContentServiceImpl implements BlogContentService {
         if (mapper.add(blogContent) == 0) return ResultMessage.wrongMsg("发表失败!");
 
         //发表成功则更新redis缓存
-        redisUtil.pushListOne("blogList",  blogContent);
-        blogLog.infoLog(getClass(),"更新redis缓存成功"+blogContent);
+        redisUtil.pushListOne("blogList", blogContent);
+        blogLog.infoLog(getClass(), "更新redis缓存成功" + blogContent);
         return ResultMessage.rightMsg("发表成功!");
     }
 
@@ -90,14 +90,11 @@ public class BlogContentServiceImpl implements BlogContentService {
      **/
     @Override
     public List<BlogContentVO> getBlogList() {
-
-
-        int blogSize = (int) redisUtil.listSize("blogList");
-        BlogContent[] blogs = new BlogContent[blogSize];
-        for (int i = 0; i < blogSize; i++) {
-            Object blog = redisUtil.ListLeftPop("blogList");
-            blogLog.infoLog(getClass(), "从redis查询到缓存数据：" + blog);
-            blogs[i] = (BlogContent) blog;
+        
+        List<Object> list = redisUtil.listAll("blogList");
+        List<BlogContent> blogContents = new ArrayList<>(list.size());
+        for (int i = 0; i < list.size(); i++) {
+            blogContents.add((BlogContent) list.get(i));
         }
         List<BlogContentVO> blogContentVOS = new ArrayList<>();
 
@@ -105,8 +102,6 @@ public class BlogContentServiceImpl implements BlogContentService {
         // List<BlogContent> blogContents = mapper.getBlogList();
         //if (blogContents == null) return null;
 
-        if (blogs == null) return null;
-        List<BlogContent> blogContents = Arrays.asList(blogs);
         blogContents.forEach(blogContent -> {
             //消除content中的html标签
             String noLabelContent = blogContent.getContent().replaceAll("</?[^>]+>", "");
