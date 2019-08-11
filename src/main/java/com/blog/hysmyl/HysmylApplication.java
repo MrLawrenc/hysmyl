@@ -22,8 +22,9 @@ import java.util.logging.Logger;
 @MapperScan("com.blog.hysmyl.mapper")
 public class HysmylApplication {
 
-   static {
-   }
+    static {
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(HysmylApplication.class, args);
 

@@ -13,8 +13,10 @@ import java.util.Date;
  **/
 @Setter
 @Getter
-@AllArgsConstructor@NoArgsConstructor
+@AllArgsConstructor
+@NoArgsConstructor
 public class BlogContentVO {
+    private Integer id;
     private String title;
     private Date date;
     private String content;

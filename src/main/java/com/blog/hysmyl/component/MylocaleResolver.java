@@ -11,9 +11,9 @@ import java.util.Locale;
 
 /**
  * @author Liu Mingyao
- * @since 2018-11-10 14:07
  * @Deprecated 国际化
  * 可以在连接上带上区域信息
+ * @since 2018-11-10 14:07
  **/
 public class MylocaleResolver implements LocaleResolver {
 
@@ -31,7 +31,6 @@ public class MylocaleResolver implements LocaleResolver {
         locale = new Locale(params[0], params[1]);
         return locale;
     }
-
 
 
     @Override

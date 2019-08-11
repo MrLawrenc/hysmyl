@@ -8,7 +8,7 @@
     </insert>
 
     <select id="getBlogList" resultType="blogContent">
-        select title, createTime, updateTime, content
+        select id,title, createTime, updateTime, content
         from blog_content
     </select>
     <select id="getBlog" resultType="blogContent" parameterType="integer">

@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,10 +43,19 @@ public class IndexController {
     //自己所有的博客列表
     @GetMapping("/blog/list")
     public String blogList(Model model) {
-
         List<BlogContentVO> blogContentVOS = blogContentService.getBlogList();
         model.addAttribute("blogContentVOS", blogContentVOS);
         return "blogList";
+    }
+
+    //自己所有的博客列表
+    @GetMapping("/blog/single")
+    public String singleBlog(Integer id, Model model) {
+        BlogContent blog = blogContentService.getBlog(id);
+        System.out.println("需要查看id为:" + id + "的博客" + blog);
+
+        model.addAttribute("blog", blog);
+        return "blog";
     }
 
     //查看具体某一篇博客

@@ -114,7 +114,7 @@
                                 <p class="blogContentOneShow" th:text="${blogContentVO.content}">这是博客内容 有很多 这是博客内容 有很多
                                     这是博客内容 有很多 这是博客内容 有很多 这是博客内容 有很多
                                     这是博客内容 有很多 这是博客内容 有很多</p>
-                                <a href="single.html">Read More...</a>
+                                <a th:href="@{/blog/single(id=${blogContentVO.getId()})}">Read More...</a>
                                 <br><br>
                                 <span th:text="${#dates.format(blogContentVO.date,'yyyy-MM-dd')}">MAY 21, 2014 BY VAFPRESS</span><br>
                             </div>

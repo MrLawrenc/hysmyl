@@ -1,6 +1,5 @@
 package com.blog.hysmyl.utils.email;
 
-import com.alibaba.fastjson.JSON;
 import com.blog.hysmyl.entity.MyEmail;
 import com.blog.hysmyl.pojo.MailUser;
 import com.blog.hysmyl.utils.BlogLog;
@@ -13,12 +12,15 @@ import org.springframework.stereotype.Component;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.MimeMessage;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * @author Liu Mingyao
- * @since 2018-11-28 21:12
  * @Deprecated 邮件相关操作  @Value注解 :null 后的null表示在配置中未配置属性的时候 默认值为null字符
+ * @since 2018-11-28 21:12
  **/
 @Component
 @Setter

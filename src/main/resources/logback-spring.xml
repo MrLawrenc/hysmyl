@@ -31,11 +31,13 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         -->
         <layout class="ch.qos.logback.classic.PatternLayout">
             <springProfile name="dev"><!--文件名必须是-spring才能使用profile进行模式切换，不然日志框架直接就识别了该配置-->
-                <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%thread] %-5level){red} %clr(${PID:-}){magenta} %clr(--dev--){blue} %clr(%logger{50} - %msg%n){yellow}
+                <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%thread] %-5level){red} %clr(${PID:-}){magenta}
+                    %clr(--dev--){blue} %clr(%logger{50} - %msg%n){yellow}
                 </pattern>
             </springProfile>
             <springProfile name="prod">
-                <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%thread] %-5level){red} %clr(${PID:-}){magenta} %clr(--prod--){blue} %clr(%logger{50} - %msg%n){yellow}
+                <pattern>%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){green} %clr([%thread] %-5level){red} %clr(${PID:-}){magenta}
+                    %clr(--prod--){blue} %clr(%logger{50} - %msg%n){yellow}
                 </pattern>
             </springProfile>
         </layout>
@@ -71,9 +73,14 @@ debug：当此属性设置为true时，将打印出logback内部日志信息，�
         <!-- 日志输出格式： -->
         <layout class="ch.qos.logback.classic.PatternLayout">
             <springProfile name="dev">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} --dev-- [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern></springProfile>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} --dev-- [ %thread ] - [ %-5level ] [ %logger{50} : %line ] -
+                    %msg%n
+                </pattern>
+            </springProfile>
             <springProfile name="prod">
-                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} --prod-- [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} --prod-- [ %thread ] - [ %-5level ] [ %logger{50} : %line ] -
+                    %msg%n
+                </pattern>
             </springProfile>
         </layout>
     </appender>

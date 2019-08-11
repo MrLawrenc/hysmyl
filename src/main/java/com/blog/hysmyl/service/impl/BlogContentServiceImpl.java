@@ -56,7 +56,7 @@ public class BlogContentServiceImpl implements BlogContentService {
             String replace = imgStr.replace("<img src=\"", "");
 
             String imgPath = replace.substring(0, replace.indexOf("\""));
-            String realImgPath="";
+            String realImgPath = "";
             try {
                 realImgPath = new File(".").getCanonicalPath() + imgPath;
                 FileUtils.copyFile(new File(realImgPath), new File(realImgPath.replace("user-img", "blog-img")));
@@ -86,10 +86,11 @@ public class BlogContentServiceImpl implements BlogContentService {
         if (blogContents == null) return null;
         List<BlogContentVO> blogContentVOS = new ArrayList<>();
         blogContents.forEach(blogContent -> {
+            Integer id = blogContent.getId();
             //消除content中的html标签
             String noLabelContent = blogContent.getContent().replaceAll("</?[^>]+>", "");
             //如果没有更新时间就使用创建时间
-            BlogContentVO blogContentVO = blogContent.getUpdateTime() == null ? new BlogContentVO(blogContent.getTitle(), blogContent.getCreateTime(), noLabelContent) : new BlogContentVO(blogContent.getTitle(), blogContent.getUpdateTime(), noLabelContent);
+            BlogContentVO blogContentVO = blogContent.getUpdateTime() == null ? new BlogContentVO(id, blogContent.getTitle(), blogContent.getCreateTime(), noLabelContent) : new BlogContentVO(id, blogContent.getTitle(), blogContent.getUpdateTime(), noLabelContent);
             blogContentVOS.add(blogContentVO);
         });
         return blogContentVOS;

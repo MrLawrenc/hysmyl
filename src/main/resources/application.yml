@@ -7,11 +7,11 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
-#  环境切换,在生产，开发等环境中切换
+  #  环境切换,在生产，开发等环境中切换
   profiles:
-#    active: dev
-    active: prod
-#  国际化消息
+    active: dev
+  #    active: prod
+  #  国际化消息
   messages:
     basename: i18n.login
   devtools:
@@ -19,7 +19,7 @@ spring:
       trigger-file: trigger.file
   servlet:
     multipart:
-#      配置上传文件大小限制
+      #      配置上传文件大小限制
       max-file-size: 10MB
 
 
@@ -69,7 +69,7 @@ email:
 spring:
   profiles: dev
   thymeleaf:
-  #开启模板缓存（默认值：true）
+    #开启模板缓存（默认值：true）
     cache: false
   datasource:
     password: admin

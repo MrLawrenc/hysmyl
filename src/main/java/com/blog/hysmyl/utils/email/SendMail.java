@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * @author Liu Mingyao
- * @since 2018-11-27 23:46
  * @Deprecated 邮件发送信息类
+ * @since 2018-11-27 23:46
  **/
 @AllArgsConstructor
 @Getter
