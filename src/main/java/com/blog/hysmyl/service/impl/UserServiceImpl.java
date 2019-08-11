@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * @author Liu Ming
-     * @deprecated 校验用户账号密码是否正确
+     * @description 校验用户账号密码是否正确
      */
     @Override
     public boolean validateUser(String username, String password) {

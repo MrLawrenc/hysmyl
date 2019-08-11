@@ -2,7 +2,6 @@ package com.blog.hysmyl.entity;
 
 import com.blog.hysmyl.pojo.MailUser;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -12,7 +11,7 @@ import java.util.List;
 /**
  * @author Liu Mingyao
  * @since 2018-11-25 21:18
- * @deprecated 邮件实体类
+ * @description 邮件实体类
  **/
 @Setter
 @Getter

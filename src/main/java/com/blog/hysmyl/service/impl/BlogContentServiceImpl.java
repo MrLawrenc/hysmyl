@@ -7,15 +7,14 @@ import com.blog.hysmyl.service.BlogContentService;
 import com.blog.hysmyl.utils.BlogLog;
 import com.blog.hysmyl.utils.ResultMessage;
 import com.blog.hysmyl.utils.StringUtils;
+import com.blog.hysmyl.utils.redis.RedisUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,9 +29,12 @@ public class BlogContentServiceImpl implements BlogContentService {
     @Autowired
     private BlogLog blogLog;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     /**
      * @author Liu Ming
-     * @deprecated 发表博客
+     * @description 发表博客，在发表成功之后需要更新redis缓存中的blog列表数据
      */
     @Override
     public ResultMessage pushBlog(BlogContent blogContent) {
@@ -71,20 +73,35 @@ public class BlogContentServiceImpl implements BlogContentService {
 
         blogContent.setContent(content);
 
-        return mapper.add(blogContent) == 0 ? ResultMessage.wrongMsg("发表失败!") : ResultMessage.rightMsg("发表成功!");
+        if (mapper.add(blogContent) == 0) return ResultMessage.wrongMsg("发表失败!");
+
+        //发表成功则更新redis缓存
+        redisUtil.pushListOne("blogList", blogContent);
+        blogLog.infoLog(getClass(), "更新redis缓存成功" + blogContent);
+        return ResultMessage.rightMsg("发表成功!");
     }
 
 
     /**
      * 得到该用户所有的博客内容
+     * <p>引入redis缓存，先查缓存，kafka会监听新发布的博客，如果有新发布的内容会更新redis缓存</>
      *
      * @author Liu Ming
      **/
     @Override
     public List<BlogContentVO> getBlogList() {
-        List<BlogContent> blogContents = mapper.getBlogList();
-        if (blogContents == null) return null;
+        
+        List<Object> list = redisUtil.listAll("blogList");
+        List<BlogContent> blogContents = new ArrayList<>(list.size());
+        for (int i = 0; i < list.size(); i++) {
+            blogContents.add((BlogContent) list.get(i));
+        }
         List<BlogContentVO> blogContentVOS = new ArrayList<>();
+
+        //从数据库查询，上面是从redis查询
+        // List<BlogContent> blogContents = mapper.getBlogList();
+        //if (blogContents == null) return null;
+
         blogContents.forEach(blogContent -> {
             Integer id = blogContent.getId();
             //消除content中的html标签

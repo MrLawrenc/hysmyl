@@ -13,19 +13,19 @@ public interface UserService {
 
     /**
      * @author Liu Ming
-     * @deprecated 校验用户是否登录
+     * @description 校验用户是否登录
      */
     boolean validateUser(String username, String password);
 
     /**
      * @author Liu Ming
-     * @deprecated 添加用户
+     * @description 添加用户
      */
     boolean addUser(User user);
 
     /**
      * @author Liu Ming
-     * @deprecated 注销用户
+     * @description 注销用户
      */
     boolean cancelUser(User user);
 }
