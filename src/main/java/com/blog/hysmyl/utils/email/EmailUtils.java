@@ -19,8 +19,8 @@ import java.util.Properties;
 
 /**
  * @author Liu Mingyao
- * @since 2018-11-28 21:12
  * @Deprecated 邮件相关操作  @Value注解 :null 后的null表示在配置中未配置属性的时候 默认值为null字符
+ * @since 2018-11-28 21:12
  **/
 @Component
 @Setter

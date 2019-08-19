@@ -71,7 +71,7 @@ public class EditorController {
                         file.transferTo(new File(path));
                     }
                 } catch (Exception e) {
-                    blogLog.exceptionLog(getClass(), "文件上传失败  -  获取到的项目根路径是clzPath:",clzPath, "\npath是：", path, "  -  ", e.getMessage());
+                    blogLog.exceptionLog(getClass(), "文件上传失败  -  获取到的项目根路径是clzPath:", clzPath, "\npath是：", path, "  -  ", e.getMessage());
                     e.printStackTrace();
                     return JSON.toJSONString(ResultMessage.wrongMsg("文件上传失败!"));
                 } finally {

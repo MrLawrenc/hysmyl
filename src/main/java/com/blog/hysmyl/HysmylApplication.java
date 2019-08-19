@@ -9,8 +9,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan("com.blog.hysmyl.mapper")
 public class HysmylApplication {
 
-   static {
-   }
+    static {
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(HysmylApplication.class, args);
 

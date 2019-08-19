@@ -6,8 +6,8 @@ import lombok.Getter;
 
 /**
  * @author Liu Mingyao
- * @since 2018-11-10 21:09
  * @Deprecated 封装响应给前台的数据
+ * @since 2018-11-10 21:09
  **/
 @AllArgsConstructor
 @Getter

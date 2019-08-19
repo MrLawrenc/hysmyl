@@ -1,5 +1,6 @@
 package com.blog.hysmyl.controller;
 
+import com.blog.hysmyl.api.LoginApi;
 import com.blog.hysmyl.mapper.BlogContentMapper;
 import com.blog.hysmyl.pojo.BlogContent;
 import com.blog.hysmyl.service.UserService;
@@ -27,7 +28,7 @@ import java.util.Map;
  * @create: 2018-11-06 11:56
  **/
 @Controller
-public class LoginController {
+public class LoginController implements LoginApi {
     @Autowired
     private BlogLog blogLog;
 

@@ -103,10 +103,11 @@ public class BlogContentServiceImpl implements BlogContentService {
         //if (blogContents == null) return null;
 
         blogContents.forEach(blogContent -> {
+            Integer id = blogContent.getId();
             //消除content中的html标签
             String noLabelContent = blogContent.getContent().replaceAll("</?[^>]+>", "");
             //如果没有更新时间就使用创建时间
-            BlogContentVO blogContentVO = blogContent.getUpdateTime() == null ? new BlogContentVO(blogContent.getTitle(), blogContent.getCreateTime(), noLabelContent) : new BlogContentVO(blogContent.getTitle(), blogContent.getUpdateTime(), noLabelContent);
+            BlogContentVO blogContentVO = blogContent.getUpdateTime() == null ? new BlogContentVO(id, blogContent.getTitle(), blogContent.getCreateTime(), noLabelContent) : new BlogContentVO(id, blogContent.getTitle(), blogContent.getUpdateTime(), noLabelContent);
             blogContentVOS.add(blogContentVO);
         });
         return blogContentVOS;

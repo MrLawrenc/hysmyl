@@ -32,7 +32,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     /**
      * @author Liu Ming
-     *  给容器添加国际化相关组件
+     * 给容器添加国际化相关组件
      */
     @Bean
     public LocaleResolver localeResolver() {
@@ -50,10 +50,11 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").excludePathPatterns("/login.html", "/", "/user/index","/assets/**","/registe/user");
     }*/
 
- /**
-  * 添加上传图片的外部资源映射。上传图片到了项目根目录，springboot是无法访问到的
-  * @author  Liu Ming
-  */
+    /**
+     * 添加上传图片的外部资源映射。上传图片到了项目根目录，springboot是无法访问到的
+     *
+     * @author Liu Ming
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/blog-img/**")

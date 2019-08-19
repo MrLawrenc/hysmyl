@@ -2,6 +2,8 @@ package com.blog.hysmyl.utils.timer;
 
 import com.blog.hysmyl.utils.BlogLog;
 import com.blog.hysmyl.utils.Clear;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +14,7 @@ import java.util.TimerTask;
 
 /**
  * @author Liu Mingyao
- * @Deprecated 定时任务工具类
+ * @description 定时任务工具类
  * @since 2018-11-30 19:00
  **/
 public class TimerUtil {
@@ -45,8 +47,8 @@ public class TimerUtil {
     }
 
     /**
+     * @Description 开启定时任务
      * @author Liu Ming
-     * @description 开启定时任务
      */
     public void startTimer() {
         Timer timer = new Timer();
@@ -64,7 +66,7 @@ public class TimerUtil {
             public void run() {
                 clear.clearUserUploadImg();
             }
-        }, c.getTime(), 1000 * 60);
+        }, c.getTime(), 1000 * 60 * 60 * 24);
         //定时清理日志
         c.set(Calendar.DATE, c.get(Calendar.DAY_OF_MONTH) + 31);
 //        System.out.println("定时任务启动成功         将在" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(c.getTime())+"清理日志文件!");
@@ -73,7 +75,8 @@ public class TimerUtil {
             public void run() {
                 clear.clearLog();
             }
-        }, new Date(), 1000 * 60);
+        }, new Date(), 1000 * 60 * 60 * 24);
+
     }
 
 

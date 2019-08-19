@@ -12,8 +12,8 @@ import java.util.Map;
 
 /**
  * @author Liu Mingyao
- * @since 2018-11-13 17:11
  * @Deprecated 解析sina.txt和sina2表情文件, 并组装
+ * @since 2018-11-13 17:11
  **/
 public class ResolveEmojiFile {
 
