@@ -21,6 +21,71 @@ public class BlogLog extends StringUtils {
         return LoggerFactory.getLogger(clz);
     }
 
+    private Logger getLogger(String clzName) {
+        return LoggerFactory.getLogger(clzName);
+    }
+
+    /**
+     * @author : LiuMing
+     * @date : 2019/8/19 11:25
+     * @description :   slf4j日志输出方法的封装；普通记录日志
+     */
+    public void infoLog(String str, Object... messages) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        if (stackTrace.length < 3) return;
+        String clzName = stackTrace[2].getClassName();
+        getLogger(clzName).info(str, messages);
+    }
+
+
+    /**
+     * @author : LiuMing
+     * @date : 2019/8/19 13:37
+     * @description :   错误日志
+     */
+    public void errorLog(String str, Object... messages) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        if (stackTrace.length < 3) return;
+        String clzName = stackTrace[2].getClassName();
+        getLogger(clzName).error(str, messages);
+    }
+
+    /**
+     * @author : LiuMing
+     * @date : 2019/8/19 13:42
+     * @description :   带有异常信息的错误日志
+     */
+    public void errorLog(String str, Throwable t, Object... messages) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        if (stackTrace.length < 3) return;
+        String clzName = stackTrace[2].getClassName();
+        getLogger(clzName).error(str + " 异常信息如下:\n" + ExceptionUtil.getExceptionInfo(t), messages);
+    }
+
+    /**
+     * @author : LiuMing
+     * @date : 2019/8/19 13:53
+     * @description :   带有异常信息的警告日志
+     */
+    public void warnLog(String str, Throwable t, Object... messages) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        if (stackTrace.length < 3) return;
+        String clzName = stackTrace[2].getClassName();
+        getLogger(clzName).warn(str + " 异常信息如下:\n" + ExceptionUtil.getExceptionInfo(t), messages);
+    }
+
+    /**
+     * @author : LiuMing
+     * @date : 2019/8/19 13:53
+     * @description :   警告日志
+     */
+    public void warnLog(String str, Object... messages) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        if (stackTrace.length < 3) return;
+        String clzName = stackTrace[2].getClassName();
+        getLogger(clzName).warn(str, messages);
+    }
+
     /**
      * @param messages 需要拼接的参数
      * @author Liu Ming

@@ -1,6 +1,6 @@
 package com.blog.hysmyl.controller;
 
-import com.blog.hysmyl.utils.kafka.KafKaCustomrProducer;
+import com.blog.hysmyl.utils.kafka.KafKaCustomerProducer;
 import com.blog.hysmyl.utils.redis.RedisUtil;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
@@ -19,7 +19,7 @@ import java.util.List;
 @RestController
 public class TestRedisAndKafkaController {
     @Autowired
-    private KafKaCustomrProducer producer;
+    private KafKaCustomerProducer producer;
     @Autowired
     private RedisUtil redisUtil;
 

@@ -6,7 +6,7 @@ import com.blog.hysmyl.service.UserService;
 import com.blog.hysmyl.utils.BlogLog;
 import com.blog.hysmyl.utils.IpUtil;
 import com.blog.hysmyl.utils.ResultMessage;
-import com.blog.hysmyl.utils.kafka.KafKaCustomrProducer;
+import com.blog.hysmyl.utils.kafka.KafKaCustomerProducer;
 import com.blog.hysmyl.utils.redis.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,11 +39,17 @@ public class LoginController {
     @Autowired
     private RedisUtil redisUtil;
     @Autowired
-    private KafKaCustomrProducer producer;
+    private KafKaCustomerProducer producer;
 
 
     @PostMapping(value = "/user/index")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map map, HttpServletRequest request) {
+//        try {
+//            int a=1/0;
+//        }catch (Exception e){
+//            new BlogLog().errorLog("我是测试{}--->{}",e,"刘明瑶","Hello");
+//        }
+//        new BlogLog().infoLog("我是测试的日志:{}",username);
         HttpSession session = request.getSession();
         if (service.validateUser(username, password)) {
 //        if (true){
