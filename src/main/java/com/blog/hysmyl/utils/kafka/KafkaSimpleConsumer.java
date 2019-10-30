@@ -1,12 +1,7 @@
 package com.blog.hysmyl.utils.kafka;
 
 import com.blog.hysmyl.utils.BlogLog;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.support.KafkaHeaders;
-import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,7 +15,7 @@ public class KafkaSimpleConsumer {
     @Autowired
     private BlogLog blogLog;
 
-    // 简单消费者
+  /*  // 简单消费者
     @KafkaListener(groupId = "kafka2", topics = "blogMsg")
     public void consumerBlog(ConsumerRecord<String, Object> record, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic, Consumer consumer) {
         System.out.println("博客消息:" + record.value() + "; topic:" + topic);
@@ -49,7 +44,7 @@ public class KafkaSimpleConsumer {
 
         //存入数据库即可
     }
-
+*/
 
 //    // 简单消费者
 //    @KafkaListener(groupId = "kafka2", topics = "需要监听的topic主题")

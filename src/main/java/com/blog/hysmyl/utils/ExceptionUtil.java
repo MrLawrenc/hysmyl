@@ -19,4 +19,11 @@ public final class ExceptionUtil {
         t.printStackTrace(new PrintWriter(stringWriter, true));
         return stringWriter.getBuffer().toString();
     }
+
+    public static String appendExceptionInfo(Throwable t) {
+        String prefix = "\t异常信息如下:\n";
+        StringWriter stringWriter = new StringWriter();
+        t.printStackTrace(new PrintWriter(stringWriter, true));
+        return prefix + stringWriter.getBuffer().toString();
+    }
 }

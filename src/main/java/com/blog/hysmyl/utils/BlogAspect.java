@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * @author Liu Mingyao
- * @Deprecated aop日志处理
+ * @description aop日志处理
  * @since 2018-11-09 15:30
  **/
 @Aspect
@@ -30,7 +30,7 @@ public class BlogAspect {
     }
 
     /**
-     * @deprecated 输出方法的所有参数
+     * @description 输出方法的所有参数
      */
     @Before("webLog()")
     public void Before(JoinPoint joinPoint) {

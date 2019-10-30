@@ -2,10 +2,8 @@ package com.blog.hysmyl.controller;
 
 import com.blog.hysmyl.api.LoginApi;
 import com.blog.hysmyl.mapper.BlogContentMapper;
-import com.blog.hysmyl.pojo.BlogContent;
 import com.blog.hysmyl.service.UserService;
 import com.blog.hysmyl.utils.BlogLog;
-import com.blog.hysmyl.utils.IpUtil;
 import com.blog.hysmyl.utils.ResultMessage;
 import com.blog.hysmyl.utils.kafka.KafKaCustomerProducer;
 import com.blog.hysmyl.utils.redis.RedisUtil;
@@ -18,9 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -57,17 +52,17 @@ public class LoginController implements LoginApi {
             session.setAttribute("user", username);
 
             //查询所有的blog列表，放入redis作为缓存
-            List<BlogContent> blogContents = mapper.getBlogList();
-            List<Object> list = new ArrayList<>(blogContents.size());
-            for (BlogContent blogContent : blogContents) {
-                list.add(blogContent);
-            }
-            redisUtil.ListSet("blogList", list);
+//            List<BlogContent> blogContents = mapper.getBlogList();
+//            List<Object> list = new ArrayList<>(blogContents.size());
+//            for (BlogContent blogContent : blogContents) {
+//                list.add(blogContent);
+//            }
+//            redisUtil.ListSet("blogList", list);
 
             //使用kafka发送客户端相关信息（用户名 密码 登录ip地址 登录时间）
-            String ip = IpUtil.getRealIpAddr(request);
+           /* String ip = IpUtil.getRealIpAddr(request);
             String kafkaMsg="{ip:"+ip+",username:"+username+",password:"+password+",createTime:"+new Date()+"}";
-            producer.sendMessage("client_info", kafkaMsg);
+            producer.sendMessage("client_info", kafkaMsg);*/
 
             return "redirect:/main.html";
         }
@@ -76,7 +71,7 @@ public class LoginController implements LoginApi {
     }
 
     @GetMapping("/registe/user")
-    @ResponseBody
+    @ResponseBody@Override
     public ResultMessage registe() {
 
         return ResultMessage.rightMsg();

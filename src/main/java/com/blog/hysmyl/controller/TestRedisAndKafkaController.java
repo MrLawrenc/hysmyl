@@ -25,7 +25,7 @@ public class TestRedisAndKafkaController {
 
     @GetMapping("/rk")
     public void testRedisAndKafka() {
-        producer.sendMessage("blogMsg", "我是测试kafka的消息");
+        producer.sendMessage("kafka2", "我是测试kafka的消息");
 
 
         redisUtil.StringSet("liumy", "我是测试redis的消息");

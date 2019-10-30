@@ -1,8 +1,9 @@
 package com.blog.hysmyl.utils;
 
+import com.blog.hysmyl.utils.log.LogUtil;
+
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 /**
  * @author : LiuMingyao
@@ -12,27 +13,33 @@ import java.net.UnknownHostException;
 public class IpUtil {
 
     /**
-     * @author  : LiuMing
-     * @date : 2019/7/19 10:00
-     * @description :   获取客户端ip地址
+     * 获取客户端ip地址
      */
     public static String getRealIpAddr(HttpServletRequest request) {
-        String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        if (ip == null || ip.length() == 0 || ip.indexOf(":") > -1) {
-            try {
-                ip = InetAddress.getLocalHost().getHostAddress();
-            } catch (UnknownHostException e) {
-                ip = null;
+
+        String ip = null;
+        try {
+            ip = request.getHeader("x-forwarded-for");
+            if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("Proxy-Client-IP");
             }
+            if (StringUtils.isEmpty(ip) || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("WL-Proxy-Client-IP");
+            }
+            if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("HTTP_CLIENT_IP");
+            }
+            if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+            }
+            if (StringUtils.isEmpty(ip) || "unknown".equalsIgnoreCase(ip)) {
+                ip = request.getRemoteAddr();
+            }
+            if (StringUtils.isEmpty(ip) || ip.contains(":")) {
+                ip = InetAddress.getLocalHost().getHostAddress();
+            }
+        } catch (Exception e) {
+            LogUtil.errorLog("IPUtils ERROR ", ExceptionUtil.appendExceptionInfo(e));
         }
         return ip;
     }
